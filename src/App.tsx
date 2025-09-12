@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
@@ -24,7 +23,7 @@ function AppContent() {
       <Navbar />
       <main className="flex-1">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={
             <PublicRoute>
               <Login />
@@ -36,16 +35,6 @@ function AppContent() {
             </PublicRoute>
           } />
           <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/emergency" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/health" element={
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
