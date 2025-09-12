@@ -1,23 +1,21 @@
 { pkgs, ... }: {
-  channel = "stable-24.05";
-  packages = [
-    pkgs.nodejs_20
-  ];
-  extensions = [
-    "svelte.svelte-vscode"
-    "vue.volar"
-    "dbaeumer.vscode-eslint"
-  ];
-  preBuild = {
-    commands = [
-      "npm install"
-    ];
-  };
-  previews = [
-    {
-      name = "web";
-      command = "npm run dev -- --port $PORT --host 0.0.0.0";
-      manager = "web";
-    }
-  ];
+	# Which nixpkgs channel to use.
+	channel = "stable-23.11"; # or "unstable"
+	# Use https://search.nixos.org/packages to find packages
+	packages = [
+		pkgs.nodejs_20
+	];
+	# Sets environment variables in the workspace
+	env = {};
+	idx = {
+		# Search for the extensions you want on https://open-vsx.org/
+		# and add them to the list below.
+		extensions = [
+			"vscodevim.vim"
+		];
+		# Enable previews
+		previews = {
+			enable = true;
+		};
+	};
 }
