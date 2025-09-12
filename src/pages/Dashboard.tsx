@@ -163,30 +163,6 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Model Insights & Recommendations */}
-        <div className="mt-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-100">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-blue-900 flex items-center space-x-2">
-              <Cloud className="h-6 w-6" />
-              <span>Model Insights & Recommendations</span>
-            </h2>
-            <div className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-              Model Confidence: High
-            </div>
-          </div>
-          <p className="text-blue-700 mb-4">
-            The prediction model is operating with high confidence. Recommendations are based on integrated data from satellite, ground, and meteorological sources.
-          </p>
-          <div className="flex space-x-4">
-            <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200">
-              View Model Details
-            </button>
-            <button className="px-4 py-2 bg-white text-blue-600 border border-blue-300 hover:bg-blue-50 rounded-lg transition-colors duration-200">
-              Export Report
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
