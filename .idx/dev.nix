@@ -6,6 +6,7 @@
   idx.extensions = [
     "svelte.svelte-vscode"
     "vue.volar"
+    "dbaeumer.vscode-eslint"
   ];
   idx.preBuild = {
     command = [
