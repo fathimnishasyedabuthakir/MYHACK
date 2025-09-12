@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Wind, Mail, Lock, User, AlertCircle, Eye, EyeOff, CheckCircle } from 'lucide-react';
+import { Cloud, Mail, Lock, User, AlertCircle, Eye, EyeOff, CheckCircle } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const SignUp: React.FC = () => {
@@ -69,18 +69,18 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-blue-50 to-indigo-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-emerald-600 to-blue-600 px-6 py-8 text-center">
+          <div className="bg-gradient-to-r from-cyan-600 to-blue-600 px-6 py-8 text-center">
             <div className="flex justify-center mb-4">
               <div className="p-3 bg-white/20 backdrop-blur-md rounded-2xl">
-                <Wind className="h-8 w-8 text-white" />
+                <Cloud className="h-8 w-8 text-white" />
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-2">Join AirGuard</h2>
-            <p className="text-blue-100">Create your account to start monitoring</p>
+            <h2 className="text-2xl font-bold text-white mb-2">Join Air Quality Model</h2>
+            <p className="text-blue-100">Create your account to start predicting</p>
           </div>
 
           {/* Form */}
@@ -107,7 +107,7 @@ const SignUp: React.FC = () => {
                     type="text"
                     value={formData.name}
                     onChange={handleChange}
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200"
                     placeholder="Enter your full name"
                     required
                   />
@@ -128,7 +128,7 @@ const SignUp: React.FC = () => {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200"
                     placeholder="Enter your email"
                     required
                   />
@@ -149,7 +149,7 @@ const SignUp: React.FC = () => {
                     type={showPassword ? 'text' : 'password'}
                     value={formData.password}
                     onChange={handleChange}
-                    className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
+                    className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200"
                     placeholder="Create a password"
                     required
                   />
@@ -199,7 +199,7 @@ const SignUp: React.FC = () => {
                     className={`block w-full pl-10 pr-12 py-3 border rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 transition-all duration-200 ${
                       formData.confirmPassword && formData.password !== formData.confirmPassword
                         ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-                        : 'border-gray-300 focus:ring-emerald-500 focus:border-emerald-500'
+                        : 'border-gray-300 focus:ring-cyan-500 focus:border-cyan-500'
                     }`}
                     placeholder="Confirm your password"
                     required
@@ -226,16 +226,16 @@ const SignUp: React.FC = () => {
                   id="terms"
                   name="terms"
                   type="checkbox"
-                  className="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
                   required
                 />
                 <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
                   I agree to the{' '}
-                  <Link to="/terms" className="text-emerald-600 hover:text-emerald-500">
+                  <Link to="/#" className="text-cyan-600 hover:text-cyan-500">
                     Terms of Service
                   </Link>{' '}
                   and{' '}
-                  <Link to="/privacy" className="text-emerald-600 hover:text-emerald-500">
+                  <Link to="/#" className="text-cyan-600 hover:text-cyan-500">
                     Privacy Policy
                   </Link>
                 </label>
@@ -244,7 +244,7 @@ const SignUp: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading || !isPasswordValid}
-                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105"
+                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105"
               >
                 {loading ? (
                   <div className="flex items-center space-x-2">
@@ -262,7 +262,7 @@ const SignUp: React.FC = () => {
                 Already have an account?{' '}
                 <Link
                   to="/login"
-                  className="font-medium text-emerald-600 hover:text-emerald-500 transition-colors duration-200"
+                  className="font-medium text-cyan-600 hover:text-cyan-500 transition-colors duration-200"
                 >
                   Sign in here
                 </Link>
