@@ -7,6 +7,12 @@
     "svelte.svelte-vscode"
     "vue.volar"
   ];
+  idx.preBuild = {
+    command = [
+      "npm"
+      "install"
+    ];
+  };
   idx.previews = {
     previews = {
       web = {
