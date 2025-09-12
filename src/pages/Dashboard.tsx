@@ -2,38 +2,36 @@ import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { 
   Wind, 
-  AlertTriangle, 
-  Shield, 
-  TreePine, 
-  Heart, 
   TrendingUp,
   MapPin,
   Clock,
   Users,
-  Activity
+  Activity,
+  Cloud,
+  Map
 } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
 
   const airQualityData = [
-    { location: 'Downtown District', aqi: 42, status: 'Good', color: 'text-green-600 bg-green-100' },
-    { location: 'Industrial Zone', aqi: 89, status: 'Moderate', color: 'text-yellow-600 bg-yellow-100' },
-    { location: 'Residential Area', aqi: 28, status: 'Good', color: 'text-green-600 bg-green-100' },
-    { location: 'Harbor District', aqi: 156, status: 'Unhealthy', color: 'text-red-600 bg-red-100' },
+    { location: 'Neighborhood A', aqi: 42, status: 'Good', color: 'text-green-600 bg-green-100' },
+    { location: 'Downtown Core', aqi: 89, status: 'Moderate', color: 'text-yellow-600 bg-yellow-100' },
+    { location: 'Residential Zone B', aqi: 28, status: 'Good', color: 'text-green-600 bg-green-100' },
+    { location: 'Industrial Park', aqi: 156, status: 'Unhealthy', color: 'text-red-600 bg-red-100' },
   ];
 
-  const recentAlerts = [
-    { time: '2 min ago', message: 'High NO₂ levels detected in Industrial Zone', priority: 'high' },
-    { time: '15 min ago', message: 'Air quality improving in Downtown District', priority: 'low' },
-    { time: '1 hour ago', message: 'Emergency response plan activated for Harbor District', priority: 'critical' },
+  const predictionInsights = [
+    { time: '5 min ago', message: 'High probability of increased ozone levels in Downtown Core by 3 PM.', priority: 'high' },
+    { time: '30 min ago', message: 'Air quality expected to improve in Residential Zone B.', priority: 'low' },
+    { time: '2 hours ago', message: 'Model predicts pollutant concentration increase near Industrial Park.', priority: 'critical' },
   ];
 
   const stats = [
-    { icon: <Wind className="h-6 w-6" />, label: 'Air Quality Index', value: '52', change: '+3%', color: 'text-emerald-600' },
-    { icon: <AlertTriangle className="h-6 w-6" />, label: 'Active Alerts', value: '3', change: '-2', color: 'text-red-600' },
-    { icon: <Users className="h-6 w-6" />, label: 'People Protected', value: '125K', change: '+5.2%', color: 'text-blue-600' },
-    { icon: <TreePine className="h-6 w-6" />, label: 'Trees Recommended', value: '847', change: '+12', color: 'text-green-600' },
+    { icon: <TrendingUp className="h-6 w-6" />, label: 'Prediction Accuracy', value: '92%', change: '+1.5%', color: 'text-cyan-600' },
+    { icon: <Map className="h-6 w-6" />, label: 'Areas Covered', value: '15', change: '+2', color: 'text-blue-600' },
+    { icon: <Users className="h-6 w-6" />, label: 'Active Users', value: '500+', change: '+10%', color: 'text-green-600' },
+    { icon: <Clock className="h-6 w-6" />, label: 'Forecast Horizon', value: '48h', change: '+12h', color: 'text-indigo-600' },
   ];
 
   return (
@@ -42,10 +40,10 @@ const Dashboard: React.FC = () => {
         {/* Welcome Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome back, {user?.email?.split('@')[0]}!
+            Welcome, {user?.email?.split('@')[0]}!
           </h1>
           <p className="text-gray-600">
-            Here's your environmental monitoring overview for today.
+            Here is your air quality prediction and analysis dashboard.
           </p>
         </div>
 
@@ -71,16 +69,16 @@ const Dashboard: React.FC = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Air Quality Monitoring */}
+          {/* Hyper-Local Air Quality */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-gray-900 flex items-center space-x-2">
-                  <Wind className="h-6 w-6 text-emerald-600" />
-                  <span>Real-time Air Quality</span>
+                  <Cloud className="h-6 w-6 text-cyan-600" />
+                  <span>Hyper-Local Air Quality Predictions</span>
                 </h2>
-                <button className="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-lg hover:bg-emerald-200 transition-colors duration-200">
-                  Refresh Data
+                <button className="px-4 py-2 bg-cyan-100 text-cyan-700 rounded-lg hover:bg-cyan-200 transition-colors duration-200">
+                  Run New Prediction
                 </button>
               </div>
 
@@ -91,7 +89,7 @@ const Dashboard: React.FC = () => {
                       <MapPin className="h-5 w-5 text-gray-500" />
                       <div>
                         <div className="font-semibold text-gray-900">{data.location}</div>
-                        <div className="text-sm text-gray-600">AQI: {data.aqi}</div>
+                        <div className="text-sm text-gray-600">Predicted AQI: {data.aqi}</div>
                       </div>
                     </div>
                     <div className={`px-3 py-1 rounded-full text-sm font-medium ${data.color}`}>
@@ -101,38 +99,38 @@ const Dashboard: React.FC = () => {
                 ))}
               </div>
 
-              <div className="mt-6 p-4 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl">
-                <h3 className="font-semibold text-gray-900 mb-2">Today's Summary</h3>
+              <div className="mt-6 p-4 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl">
+                <h3 className="font-semibold text-gray-900 mb-2">Today's Forecast Summary</h3>
                 <p className="text-gray-600 text-sm">
-                  Overall air quality is <span className="font-semibold text-emerald-600">moderate</span> across monitored areas. 
-                  Harbor District requires immediate attention due to elevated pollution levels.
+                  The model predicts <span className="font-semibold text-cyan-600">moderate</span> air quality for most areas. 
+                  Industrial Park shows a high probability of unhealthy conditions later today.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Recent Alerts & Actions */}
+          {/* Prediction Insights & Actions */}
           <div className="space-y-6">
-            {/* Alerts */}
+            {/* Insights */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center space-x-2">
-                <AlertTriangle className="h-6 w-6 text-red-600" />
-                <span>Recent Alerts</span>
+                <TrendingUp className="h-6 w-6 text-blue-600" />
+                <span>Prediction Insights</span>
               </h2>
 
               <div className="space-y-4">
-                {recentAlerts.map((alert, index) => (
+                {predictionInsights.map((insight, index) => (
                   <div key={index} className="p-3 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors duration-200">
                     <div className="flex items-start space-x-3">
                       <div className={`w-2 h-2 rounded-full mt-2 ${
-                        alert.priority === 'critical' ? 'bg-red-500' :
-                        alert.priority === 'high' ? 'bg-orange-500' : 'bg-green-500'
+                        insight.priority === 'critical' ? 'bg-red-500' :
+                        insight.priority === 'high' ? 'bg-orange-500' : 'bg-green-500'
                       }`}></div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-900 mb-1">{alert.message}</p>
+                        <p className="text-sm text-gray-900 mb-1">{insight.message}</p>
                         <div className="flex items-center space-x-2 text-xs text-gray-500">
                           <Clock className="h-3 w-3" />
-                          <span>{alert.time}</span>
+                          <span>{insight.time}</span>
                         </div>
                       </div>
                     </div>
@@ -144,50 +142,25 @@ const Dashboard: React.FC = () => {
             {/* Quick Actions */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center space-x-2">
-                <Activity className="h-6 w-6 text-blue-600" />
+                <Activity className="h-6 w-6 text-green-600" />
                 <span>Quick Actions</span>
               </h2>
 
               <div className="space-y-3">
-                <button className="w-full p-3 bg-red-50 hover:bg-red-100 text-red-700 rounded-xl transition-colors duration-200 flex items-center space-x-3">
-                  <Shield className="h-5 w-5" />
-                  <span>Activate Emergency Response</span>
+                <button className="w-full p-3 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-xl transition-colors duration-200 flex items-center space-x-3">
+                  <Map className="h-5 w-5" />
+                  <span>View Detailed Forecast</span>
                 </button>
                 <button className="w-full p-3 bg-green-50 hover:bg-green-100 text-green-700 rounded-xl transition-colors duration-200 flex items-center space-x-3">
-                  <TreePine className="h-5 w-5" />
-                  <span>View Remediation Plan</span>
+                  <Users className="h-5 w-5" />
+                  <span>Notify Citizens</span>
                 </button>
-                <button className="w-full p-3 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-xl transition-colors duration-200 flex items-center space-x-3">
-                  <Heart className="h-5 w-5" />
-                  <span>Issue Health Advisory</span>
+                <button className="w-full p-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl transition-colors duration-200 flex items-center space-x-3">
+                  <Wind className="h-5 w-5" />
+                  <span>Adjust Model Parameters</span>
                 </button>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Emergency Response Panel */}
-        <div className="mt-8 bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl p-6 border border-red-100">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-red-900 flex items-center space-x-2">
-              <Shield className="h-6 w-6" />
-              <span>Emergency Response Status</span>
-            </h2>
-            <div className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-              All Systems Normal
-            </div>
-          </div>
-          <p className="text-red-700 mb-4">
-            Emergency response systems are online and monitoring for critical air quality events. 
-            Evacuation plans are ready for deployment if needed.
-          </p>
-          <div className="flex space-x-4">
-            <button className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors duration-200">
-              View Emergency Plans
-            </button>
-            <button className="px-4 py-2 bg-white text-red-600 border border-red-300 hover:bg-red-50 rounded-lg transition-colors duration-200">
-              Configure Alerts
-            </button>
           </div>
         </div>
       </div>

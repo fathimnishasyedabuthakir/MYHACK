@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Wind, LogOut, User } from 'lucide-react';
+import { Menu, X, Wind, LogOut, User, Cloud } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const Navbar: React.FC = () => {
@@ -9,10 +9,7 @@ const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
 
   const navigation = [
-    { name: 'Home', path: '/' },
     { name: 'Dashboard', path: '/dashboard' },
-    { name: 'Emergency Response', path: '/emergency' },
-    { name: 'Health Advisories', path: '/health' },
   ];
 
   const handleLogout = async () => {
@@ -29,25 +26,25 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2 group">
-              <div className="p-2 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-lg group-hover:shadow-lg transition-all duration-300">
-                <Wind className="h-6 w-6 text-white" />
+              <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg group-hover:shadow-lg transition-all duration-300">
+                <Cloud className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
-                AirGuard
+              <span className="text-xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                Air Quality Model
               </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
+            {user && navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   location.pathname === item.path
-                    ? 'bg-gradient-to-r from-emerald-500 to-blue-600 text-white shadow-lg'
-                    : 'text-gray-700 hover:text-emerald-600 hover:bg-gray-50'
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg'
+                    : 'text-gray-700 hover:text-cyan-600 hover:bg-gray-50'
                 }`}
               >
                 {item.name}
@@ -72,13 +69,13 @@ const Navbar: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-gray-700 hover:text-emerald-600 font-medium transition-colors duration-200"
+                  className="px-4 py-2 text-gray-700 hover:text-cyan-600 font-medium transition-colors duration-200"
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-blue-600 text-white rounded-lg hover:shadow-lg transition-all duration-200"
+                  className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg hover:shadow-lg transition-all duration-200"
                 >
                   Sign Up
                 </Link>
@@ -90,7 +87,7 @@ const Navbar: React.FC = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-lg text-gray-700 hover:text-emerald-600 hover:bg-gray-50 transition-colors duration-200"
+              className="p-2 rounded-lg text-gray-700 hover:text-cyan-600 hover:bg-gray-50 transition-colors duration-200"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -102,14 +99,14 @@ const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            {navigation.map((item) => (
+            {user && navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
                 className={`block px-3 py-2 rounded-lg text-base font-medium transition-all duration-200 ${
                   location.pathname === item.path
-                    ? 'bg-gradient-to-r from-emerald-500 to-blue-600 text-white'
-                    : 'text-gray-700 hover:text-emerald-600 hover:bg-gray-50'
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white'
+                    : 'text-gray-700 hover:text-cyan-600 hover:bg-gray-50'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -133,14 +130,14 @@ const Navbar: React.FC = () => {
               <div className="pt-4 border-t border-gray-200 space-y-2">
                 <Link
                   to="/login"
-                  className="block px-3 py-2 text-gray-700 hover:text-emerald-600 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                  className="block px-3 py-2 text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-lg transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className="block px-3 py-2 bg-gradient-to-r from-emerald-500 to-blue-600 text-white rounded-lg text-center"
+                  className="block px-3 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign Up
