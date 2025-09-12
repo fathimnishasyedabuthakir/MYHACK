@@ -16,17 +16,13 @@ const predictAirQuality = (latitude, longitude) => {
   };
 };
 
-app.get('/', (req, res) => {
-  res.send('Hello from the backend!');
-});
-
-app.get('/predict', (req, res) => {
-  // For now, we'll use dummy coordinates.
-  const latitude = 34.0522;
-  const longitude = -118.2437;
-
-  const prediction = predictAirQuality(latitude, longitude);
-  res.json(prediction);
+app.get('/api/predict', (req, res) => {
+  const { lat, lon } = req.query;
+  if (!lat || !lon) {
+    return res.status(400).send({ error: 'Latitude and longitude are required.' });
+  }
+  const prediction = predictAirQuality(lat, lon);
+  res.send(prediction);
 });
 
 app.listen(port, () => {

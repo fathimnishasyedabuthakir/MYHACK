@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -8,6 +9,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import HealthAdvisories from './pages/HealthAdvisories';
+import AirQuality from './AirQuality';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user } = useAuth();
@@ -51,6 +53,7 @@ function AppContent() {
               <HealthAdvisories />
             </ProtectedRoute>
           } />
+          <Route path="/air-quality" element={<AirQuality />} />
         </Routes>
       </main>
       <Footer />
