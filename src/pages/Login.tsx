@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Wind, Mail, Lock, AlertCircle, Eye, EyeOff } from 'lucide-react';
+import { Cloud, Mail, Lock, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const Login: React.FC = () => {
@@ -34,18 +34,18 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-blue-50 to-indigo-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-emerald-600 to-blue-600 px-6 py-8 text-center">
+          <div className="bg-gradient-to-r from-cyan-600 to-blue-600 px-6 py-8 text-center">
             <div className="flex justify-center mb-4">
               <div className="p-3 bg-white/20 backdrop-blur-md rounded-2xl">
-                <Wind className="h-8 w-8 text-white" />
+                <Cloud className="h-8 w-8 text-white" />
               </div>
             </div>
             <h2 className="text-2xl font-bold text-white mb-2">Welcome Back</h2>
-            <p className="text-blue-100">Sign in to access your environmental dashboard</p>
+            <p className="text-blue-100">Sign in to access your air quality dashboard</p>
           </div>
 
           {/* Form */}
@@ -71,7 +71,7 @@ const Login: React.FC = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200"
                     placeholder="Enter your email"
                     required
                   />
@@ -91,7 +91,7 @@ const Login: React.FC = () => {
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
+                    className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200"
                     placeholder="Enter your password"
                     required
                   />
@@ -115,15 +115,15 @@ const Login: React.FC = () => {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
                   />
                   <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                     Remember me
                   </label>
                 </div>
                 <Link
-                  to="/forgot-password"
-                  className="text-sm text-emerald-600 hover:text-emerald-500 transition-colors duration-200"
+                  to="/#"
+                  className="text-sm text-cyan-600 hover:text-cyan-500 transition-colors duration-200"
                 >
                   Forgot password?
                 </Link>
@@ -132,7 +132,7 @@ const Login: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105"
+                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105"
               >
                 {loading ? (
                   <div className="flex items-center space-x-2">
@@ -150,7 +150,7 @@ const Login: React.FC = () => {
                 Don't have an account?{' '}
                 <Link
                   to="/signup"
-                  className="font-medium text-emerald-600 hover:text-emerald-500 transition-colors duration-200"
+                  className="font-medium text-cyan-600 hover:text-cyan-500 transition-colors duration-200"
                 >
                   Sign up now
                 </Link>
@@ -163,11 +163,11 @@ const Login: React.FC = () => {
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-500">
             By signing in, you agree to our{' '}
-            <Link to="/terms" className="text-emerald-600 hover:text-emerald-500">
+            <Link to="/#" className="text-cyan-600 hover:text-cyan-500">
               Terms of Service
             </Link>{' '}
             and{' '}
-            <Link to="/privacy" className="text-emerald-600 hover:text-emerald-500">
+            <Link to="/#" className="text-cyan-600 hover:text-cyan-500">
               Privacy Policy
             </Link>
           </p>
