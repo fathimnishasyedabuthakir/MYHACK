@@ -27,7 +27,7 @@ const AirQuality: React.FC = () => {
               return response.json();
             })
             .then(data => setAirQuality(data))
-            .catch(err => setError('Failed to fetch air quality data. Is the backend running?'));
+            .catch(() => setError('Failed to fetch air quality data. Is the backend running?'));
         },
         (err) => {
           setError(`Geolocation error: ${err.message}. Please enable location services.`);

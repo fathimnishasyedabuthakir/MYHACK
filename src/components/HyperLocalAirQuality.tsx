@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Wind, HeartPulse, Leaf, AlertTriangle, Cloud, MapPin } from 'lucide-react';
+import { HeartPulse, Leaf, AlertTriangle, Cloud, MapPin } from 'lucide-react';
 
 interface AirQualityData {
   aqi: number;
@@ -28,10 +28,10 @@ const HyperLocalAirQuality: React.FC = () => {
               return response.json();
             })
             .then(data => setAirQuality({ ...data, location: "Your Current Location" }))
-            .catch(err => setError('Failed to fetch air quality data. Is the backend running?'));
+            .catch(() => setError('Failed to fetch air quality data. Is the backend running?'));
         },
-        (err) => {
-          setError(`Geolocation error: ${err.message}. Please enable location services.`);
+        () => {
+          setError(`Geolocation error. Please enable location services.`);
         }
       );
     } else {
