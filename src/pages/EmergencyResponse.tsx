@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { Phone, AlertTriangle, Send, PlusCircle, FileText, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Phone, AlertTriangle, Send, PlusCircle, FileText, Shield, X } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -22,6 +23,7 @@ L.Icon.Default.mergeOptions({
 const EmergencyResponse: React.FC = () => {
   const [alerts, setAlerts] = useState(initialAlerts);
   const [showReportForm, setShowReportForm] = useState(false);
+  const [showEvacuationPlan, setShowEvacuationPlan] = useState(false);
 
   const handleReportSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -122,7 +124,9 @@ const EmergencyResponse: React.FC = () => {
               <p className="mt-4 text-gray-600">
                 In the event of an emergency, please refer to the designated evacuation routes for your area.
               </p>
-              <button className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              <button 
+                onClick={() => setShowEvacuationPlan(true)}
+                className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 View Evacuation Plan
               </button>
             </div>
@@ -135,12 +139,28 @@ const EmergencyResponse: React.FC = () => {
               <p className="mt-4 text-gray-600">
                 Find the nearest emergency shelter in your area.
               </p>
-              <button className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+              <Link to="/shelters" className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                 Find a Shelter
-              </button>
+              </Link>
             </div>
           </div>
         </div>
+
+        {/* Evacuation Plan Modal */}
+        {showEvacuationPlan && (
+          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+            <div className="bg-white p-8 rounded-lg shadow-xl m-4 max-w-2xl w-full">
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold">Evacuation Plan</h2>
+                <button onClick={() => setShowEvacuationPlan(false)}><X className="h-6 w-6" /></button>
+              </div>
+              <div className="mt-4">
+                <p>This is a sample evacuation plan. In a real emergency, this would contain detailed maps and instructions.</p>
+                <img src="/evacuation-route.png" alt="Evacuation Route" className="w-full h-auto mt-4 rounded"/>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Safety Tips */}
         <div className="mt-20">

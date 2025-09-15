@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import HealthAdvisories from './pages/HealthAdvisories';
 import EmergencyResponse from './pages/EmergencyResponse';
+import EmergencyShelters from './pages/EmergencyShelters';
 import AirQuality from './AirQuality';
 import AQIMap from './pages/AQIMap'; // Import the new map component
 
@@ -48,6 +49,11 @@ function AppContent() {
           <Route path="/emergency" element={
             <ProtectedRoute>
               <EmergencyResponse />
+            </ProtectedRoute>
+          } />
+          <Route path="/shelters" element={
+            <ProtectedRoute>
+              <EmergencyShelters />
             </ProtectedRoute>
           } />
           <Route path="/health" element={
