@@ -1,25 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import { useAuth } from '../contexts/AuthContext';
 import { 
-  Wind, 
   TrendingUp,
-  MapPin,
-  Clock,
+  Map,
   Users,
+  Clock,
   Activity,
-  Cloud,
-  Map
+  Wind
 } from 'lucide-react';
+import HyperLocalAirQuality from '../components/HyperLocalAirQuality';
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
-
-  const airQualityData = [
-    { location: 'Neighborhood A', aqi: 42, status: 'Good', color: 'text-green-600 bg-green-100' },
-    { location: 'Downtown Core', aqi: 89, status: 'Moderate', color: 'text-yellow-600 bg-yellow-100' },
-    { location: 'Residential Zone B', aqi: 28, status: 'Good', color: 'text-green-600 bg-green-100' },
-    { location: 'Industrial Park', aqi: 156, status: 'Unhealthy', color: 'text-red-600 bg-red-100' },
-  ];
 
   const predictionInsights = [
     { time: '5 min ago', message: 'High probability of increased ozone levels in Downtown Core by 3 PM.', priority: 'high' },
@@ -71,42 +64,7 @@ const Dashboard: React.FC = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Hyper-Local Air Quality */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-gray-900 flex items-center space-x-2">
-                  <Cloud className="h-6 w-6 text-cyan-600" />
-                  <span>Hyper-Local Air Quality Predictions</span>
-                </h2>
-                <button className="px-4 py-2 bg-cyan-100 text-cyan-700 rounded-lg hover:bg-cyan-200 transition-colors duration-200">
-                  Run New Prediction
-                </button>
-              </div>
-
-              <div className="space-y-4">
-                {airQualityData.map((data, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
-                    <div className="flex items-center space-x-3">
-                      <MapPin className="h-5 w-5 text-gray-500" />
-                      <div>
-                        <div className="font-semibold text-gray-900">{data.location}</div>
-                        <div className="text-sm text-gray-600">Predicted AQI: {data.aqi}</div>
-                      </div>
-                    </div>
-                    <div className={`px-3 py-1 rounded-full text-sm font-medium ${data.color}`}>
-                      {data.status}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 p-4 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl">
-                <h3 className="font-semibold text-gray-900 mb-2">Today's Forecast Summary</h3>
-                <p className="text-gray-600 text-sm">
-                  The model predicts <span className="font-semibold text-cyan-600">moderate</span> air quality for most areas. 
-                  Industrial Park shows a high probability of unhealthy conditions later today.
-                </p>
-              </div>
-            </div>
+             <HyperLocalAirQuality />
           </div>
 
           {/* Prediction Insights & Actions */}
@@ -147,10 +105,10 @@ const Dashboard: React.FC = () => {
               </h2>
 
               <div className="space-y-3">
-                <button className="w-full p-3 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-xl transition-colors duration-200 flex items-center space-x-3">
+                <Link to="/map" className="w-full p-3 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-xl transition-colors duration-200 flex items-center space-x-3">
                   <Map className="h-5 w-5" />
                   <span>View Detailed Forecast</span>
-                </button>
+                </Link>
                 <button className="w-full p-3 bg-green-50 hover:bg-green-100 text-green-700 rounded-xl transition-colors duration-200 flex items-center space-x-3">
                   <Users className="h-5 w-5" />
                   <span>Notify Citizens</span>

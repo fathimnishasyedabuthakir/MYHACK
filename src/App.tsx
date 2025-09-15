@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import HealthAdvisories from './pages/HealthAdvisories';
 import AirQuality from './AirQuality';
+import AQIMap from './pages/AQIMap'; // Import the new map component
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user } = useAuth();
@@ -54,6 +55,12 @@ function AppContent() {
             </ProtectedRoute>
           } />
           <Route path="/air-quality" element={<AirQuality />} />
+          {/* Add the new map route */}
+          <Route path="/map" element={
+            <ProtectedRoute>
+              <AQIMap />
+            </ProtectedRoute>
+          } />
         </Routes>
       </main>
       <Footer />
