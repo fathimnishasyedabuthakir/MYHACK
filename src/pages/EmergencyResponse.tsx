@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Phone, AlertTriangle, Send, PlusCircle } from 'lucide-react';
+import { Phone, AlertTriangle, Send, PlusCircle, FileText, Shield } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -20,8 +20,21 @@ L.Icon.Default.mergeOptions({
 });
 
 const EmergencyResponse: React.FC = () => {
-  const [alerts] = useState(initialAlerts);
+  const [alerts, setAlerts] = useState(initialAlerts);
   const [showReportForm, setShowReportForm] = useState(false);
+
+  const handleReportSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const newAlert = {
+      id: alerts.length + 1,
+      position: [34.0522 + Math.random() * 0.1, -118.2437 + Math.random() * 0.1] as [number, number], // Randomize position for demo
+      title: formData.get('incident-type') as string,
+      description: formData.get('description') as string,
+    };
+    setAlerts([...alerts, newAlert]);
+    setShowReportForm(false);
+  };
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -70,7 +83,7 @@ const EmergencyResponse: React.FC = () => {
             </button>
             {showReportForm && (
               <div className="mt-8 bg-white rounded-xl shadow-lg p-8 text-left">
-                <form>
+                <form onSubmit={handleReportSubmit}>
                   <div className="grid grid-cols-1 gap-y-6">
                     <div>
                       <label htmlFor="incident-type" className="block text-sm font-medium text-gray-700">Incident Type</label>
@@ -95,6 +108,37 @@ const EmergencyResponse: React.FC = () => {
                 </form>
               </div>
             )}
+          </div>
+        </div>
+
+        <div className="mt-20">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Emergency Response Plans</h2>
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-xl shadow-lg p-8 mt-8">
+              <div className="flex items-center space-x-4">
+                <FileText className="h-8 w-8 text-blue-500" />
+                <h3 className="text-xl font-semibold text-gray-900">Community Evacuation Routes</h3>
+              </div>
+              <p className="mt-4 text-gray-600">
+                In the event of an emergency, please refer to the designated evacuation routes for your area.
+              </p>
+              <button className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                View Evacuation Plan
+              </button>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-lg p-8 mt-8">
+              <div className="flex items-center space-x-4">
+                <Shield className="h-8 w-8 text-green-500" />
+                <h3 className="text-xl font-semibold text-gray-900">Emergency Shelter Locations</h3>
+              </div>
+              <p className="mt-4 text-gray-600">
+                Find the nearest emergency shelter in your area.
+              </p>
+              <button className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                Find a Shelter
+              </button>
+            </div>
           </div>
         </div>
 
